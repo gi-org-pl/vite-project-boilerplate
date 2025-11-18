@@ -29,11 +29,11 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
 
-      - name: Install & build (frontend)
-        run: |
-          set -e
-          yarn install --frozen-lockfile
-          yarn build
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -64,10 +64,13 @@ jobs:
           name: frontend-build
           path: build
 
-      - name: Start app (production)
+      - name: Start app
         run: |
           set -e
           yarn preview &
+
+      - name: Install Playwright
+        run: yarn global add @playwright/test
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps --only-shell
@@ -99,8 +102,21 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
 
-      - name: Install & build (frontend)
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Run unit tests with coverage
+        run: yarn run test:coverage
+
+      - name: Code Coverage Summary Report
+        uses: saschanowak/CloverCodeCoverageSummary@1.1.1
+        with:
+          filename: ./coverage/clover.xml
+
+      - name: "Add Code Coverage to Job Summary"
         run: |
-          set -e
-          yarn install --frozen-lockfile
-          yarn run test:coverage
+          cat code-coverage-summary.md >> $GITHUB_STEP_SUMMARY
+          cat code-coverage-details.md >> $GITHUB_STEP_SUMMARY

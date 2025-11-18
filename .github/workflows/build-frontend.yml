@@ -69,8 +69,8 @@ jobs:
           set -e
           yarn preview &
 
-      - name: Install Playwright
-        run: yarn global add @playwright/test
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps --only-shell

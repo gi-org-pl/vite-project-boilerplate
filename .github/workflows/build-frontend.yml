@@ -73,7 +73,7 @@ jobs:
         run: npx playwright install --with-deps --only-shell
 
       - name: Run Playwright tests (against built app)
-        run: npx next start
+        run: npx playwright test
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}

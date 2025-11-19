@@ -111,12 +111,7 @@ jobs:
       - name: Run unit tests with coverage
         run: yarn run test:coverage
 
-      - name: Code Coverage Summary Report
-        uses: saschanowak/CloverCodeCoverageSummary@1.1.1
+      - uses: kcjpop/coverage-comments@v2.2
         with:
-          filename: ./coverage/clover.xml
-
-      - name: "Add Code Coverage to Job Summary"
-        run: |
-          cat code-coverage-summary.md >> $GITHUB_STEP_SUMMARY
-          cat code-coverage-details.md >> $GITHUB_STEP_SUMMARY
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverage-file: "./coverage/clover.xml"

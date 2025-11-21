@@ -134,7 +134,7 @@ jobs:
           cache-dependency-path: yarn.lock
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --network-concurrency 1
 
       - name: Run lint
         run: yarn run lint

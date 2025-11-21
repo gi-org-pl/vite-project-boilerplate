@@ -79,8 +79,5 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
-  },
-  "overrides": {
-    "@gi/athena": {}
   }
 }

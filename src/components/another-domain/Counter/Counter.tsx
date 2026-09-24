@@ -1,4 +1,4 @@
-import { Button } from "@gi/athena";
+import { Button } from "@gi-org-pl/athena";
 import { useState } from "react";
 
 const Counter = () => {

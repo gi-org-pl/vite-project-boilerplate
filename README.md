@@ -1,3 +1,5 @@
+![vite-project-boilerplate header](https://raw.githubusercontent.com/gi-org-pl/vite-project-boilerplate/main/.github/image/header.png)
+
 # Vite Project Boilerplate
 
 ## Repository contents
